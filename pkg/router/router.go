@@ -1,16 +1,16 @@
 package router
 
 import (
-	"log"
+	"log/slog"
 	"net/http"
 )
 
 type Router struct {
 	mux *http.ServeMux
-	log *log.Logger
+	log *slog.Logger
 }
 
-func New(log *log.Logger) *Router {
+func New(log *slog.Logger) *Router {
 	return &Router{
 		mux: http.NewServeMux(),
 		log: log,

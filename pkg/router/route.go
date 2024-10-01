@@ -3,8 +3,9 @@ package router
 import (
 	"context"
 	"fmt"
-	"log"
+	"log/slog"
 	"net/http"
+	"os"
 	"reflect"
 )
 
@@ -66,6 +67,8 @@ func handleWithDecode[T Context, S Validator[T], U interface{}](
 
 		decodedReq := *new(S)
 
+		logger := slog.New(slog.NewTextHandler(os.Stdout, nil))
+
 		err := ctx.Decode(&decodedReq)
 		if err != nil {
 			if options.errHandler != nil {
@@ -77,7 +80,7 @@ func handleWithDecode[T Context, S Validator[T], U interface{}](
 				default:
 					err = ctx.WriteResponse(http.StatusBadRequest, data)
 					if err != nil {
-						log.Println("error writing decode error response:", err)
+						logger.Error("error writing decode error response:", err)
 					}
 				}
 			}
@@ -93,7 +96,7 @@ func handleWithDecode[T Context, S Validator[T], U interface{}](
 				if resp != (*U)(nil) {
 					err = ctx.WriteResponse(statusCode, resp)
 					if err != nil {
-						log.Println("error writing response:", err)
+						logger.Error("error writing response:", err)
 						return
 					}
 				}
