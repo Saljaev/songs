@@ -86,8 +86,8 @@ ___
 
 ### Примеры запросов
 **Добавление песни**
-![img.png](images/add.png)<br>
+<br>![img.png](images/add.png)<br>
 **Получение текста с пагинацией**
-![img.png](images/get_lyric.png)<br>
+<br>![img.png](images/get_lyric.png)<br>
 **Обновление параметров песни**
-![img_1.png](images/update.png)
+<br>![img_1.png](images/update.png)
