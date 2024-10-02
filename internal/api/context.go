@@ -43,12 +43,6 @@ func (ctx *Context) Decode(dest interface{}) error {
 		Decode(interface{}) error
 	}
 
-	//if ctx.r.Method == "POST" {
-	//	decoder = json.NewDecoder(ctx.r.Body)
-	//} else {
-	//	decoder = query.NewDecoder(ctx.r.URL.Query())
-	//}
-
 	decoder = json.NewDecoder(ctx.r.Body)
 
 	err := decoder.Decode(dest)
