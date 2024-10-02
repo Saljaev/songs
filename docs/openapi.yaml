@@ -82,13 +82,21 @@ paths:
           description: Bad request
         "500":
           description: Ошибка со стороны сервера
-  /song/lyric/:
-    post:
+  /song/lyric/{id}:
+    get:
       tags:
       - songs
       summary: Получение текста песни
       description: Получение текста песни с пагинацией по куплетам
       parameters:
+      - name: id
+        in: path
+        required: true
+        style: simple
+        explode: false
+        schema:
+          type: integer
+          example: 1
       - name: offset
         in: query
         description: Количество пропущенных куплетов перед выводом
@@ -120,7 +128,7 @@ paths:
           description: Bad request
         "500":
           description: Ошибка со стороны сервера
-  /songs/delete/{id}:
+  /song/delete/{id}:
     post:
       tags:
       - songs
@@ -173,7 +181,7 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/Song'
+                $ref: '#/components/schemas/SongID'
         "400":
           description: Не валидный ID песни
         "500":
@@ -256,10 +264,6 @@ components:
           type: string
           description: Дата выпуска
           format: date
-        title:
-          type: string
-          description: Название песни
-          example: Supermassive Black Hole
     SongUpdate:
       minProperties: 1
       type: object
@@ -310,3 +314,6 @@ components:
         ID:
           type: integer
           example: 1
+
+
+
