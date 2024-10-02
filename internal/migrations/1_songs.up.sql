@@ -3,6 +3,8 @@ CREATE TABLE IF NOT EXISTS groups (
     name TEXT UNIQUE NOT NULL
 );
 
+CREATE INDEX name_idx ON groups(name);
+
 CREATE TABLE IF NOT EXISTS songs (
     id BIGSERIAL PRIMARY KEY NOT NULL,
     title TEXT NOT NULL,
